@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 app               = Flask(__name__)
 app.users         = {}
 app.id_count      = 1
+app.tweets        = []
 
 
 @app.route("/")
@@ -22,7 +23,6 @@ def sign_up():
   return jsonify(new_user)
 
 
-app.tweets=[]
 @app.route('/tweet', methods=['POST'])
 def tweet():
   payload=request.json
@@ -42,5 +42,7 @@ def tweet():
     'tweet': tweet
   })
   return '',200
+
+
 
 app.run(host='0.0.0.0', port=5000)
